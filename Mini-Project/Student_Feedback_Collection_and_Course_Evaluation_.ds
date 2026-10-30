@@ -1,0 +1,3033 @@
+/*
+ * Author       : liayogeshwari
+ * Generated on : 30-Oct-2026 17:48:52
+ * Version      : 1.0
+ */
+ application "Student Feedback Collection and Course Evaluation "
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "America/Los_Angeles"
+ 	time format = "24-hr"
+
+ 	forms
+	{
+		form course
+		{
+			displayname = "Course"
+			success message = "Course Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			course_code
+			(
+    			type = text
+				displayname = "Course Code"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			course_name
+			(
+    			type = text
+				displayname = "Course Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			instructor_name
+			(
+    			type = name
+				displayname = "Instructor Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+	     			 visibility = false
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			department
+			(
+    			type = text
+				displayname = "Department"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			semester
+			(
+    			type = text
+				displayname = "Semester"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			academic_year
+			(
+    			type = text
+				displayname = "Academic Year"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			credits
+			(
+				type = number
+				displayname = "Credits"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			course_type
+			(
+				type = picklist
+				displayname = "Course Type"
+				values = {"Theory","Lab","Lab+Theory"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			instructor_email
+			(
+    			type = email
+				displayname = "Instructor Email"
+				maxchar = 80
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Course_Feedback_Criteria
+			(
+				type = grid
+				displayname = "Course Feedback Criteria"
+				criteria_name
+				(
+					type = picklist
+					displayname = "Evaluation Criteria"
+					maxchar = 100
+					values = {"Content Quality","Delivery","Clarity","Engagement"}
+					width = medium
+				)
+				maximum_rating
+				(
+					type = number
+					displayname = "Maximum Rating"
+					initial value = 5
+					width = medium
+				)
+				description
+				(
+    				type = text
+					displayname = "Description"
+					width = medium
+				)
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form feedback_response
+		{
+			displayname = "Feedback Response"
+			success message = "Response Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique response_id
+			(
+    			type = text
+				displayname = "Response Id"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			student
+			(
+				type = list	
+				displayname = "Student"
+				values  = student.ID
+    			displayformat = [student_id]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			course
+			(
+				type = list	
+				displayname = "Course"
+				values  = course.ID
+    			displayformat = [course_code]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			submission_date
+			(
+    			type = datetime
+				displayname = "Submission Date"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			content_quality_rating
+			(
+				type = number
+				displayname = "Content Quality Rating"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			delivery_rating
+			(
+				type = number
+				displayname = "Delivery Rating"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			clarity_rating
+			(
+				type = number
+				displayname = "Clarity Rating"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			engagement_rating
+			(
+				type = number
+				displayname = "Engagement Rating"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			overall_satisfaction
+			(
+				type = picklist
+				displayname = "Overall Satisfaction"
+				values = {"Neutral","Very Satisfied","Satisfied","Very Dissatisfied","Dissatisfied"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			suggestions
+			(
+    			type = textarea
+				displayname = "Suggestions"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			is_anonymous
+			(
+    			type = checkbox
+				displayname = "Is Anonymous"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+			blueprint components
+			{
+				stages = {"Feedback Received","Feedback Under Review","Feedback Archived","Feedback Approved","Feedback Rejected","Feedback Pending Clarification","Feedback Analyzed","Feedback Actioned"}
+			}
+		}
+		form semester_summary
+		{
+			displayname = "Semester Summary"
+			success message = "Semester Summary Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique summary_id
+			(
+    			type = text
+				displayname = "Summary Id"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			course
+			(
+				type = list	
+				displayname = "Course"
+				values  = course.ID
+    			displayformat = [course_code]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			semester
+			(
+    			type = text
+				displayname = "Semester"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			academic_year
+			(
+    			type = text
+				displayname = "Academic Year"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			total_responses
+			(
+				type = number
+				displayname = "Total Responses"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			average_content_rating
+			(
+				type = decimal
+				displayname = "Average Content Rating"
+				maxchar = 16
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			average_delivery_rating
+			(
+				type = decimal
+				displayname = "Average Delivery Rating"
+				maxchar = 16
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			average_clarity_rating
+			(
+				type = decimal
+				displayname = "Average Clarity Rating"
+				maxchar = 16
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			average_engagement_rating
+			(
+				type = decimal
+				displayname = "Average Engagement Rating"
+				maxchar = 16
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			trend_status
+			(
+				type = picklist
+				displayname = "Trend Status"
+				values = {"Stable","Improving","Deteriorating"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			last_updated
+			(
+    			type = date
+				displayname = "Last Updated"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+			blueprint components
+			{
+				stages = {"Summary Created","Data Validation","Trend Analysis","Data Correction","Performance Review","Manual Review","Summary Finalized","Archive"}
+			}
+		}
+		form student
+		{
+			displayname = "Student"
+			success message = "Student Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique student_id
+			(
+    			type = text
+				displayname = "Student Id"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			full_name
+			(
+    			type = name
+				displayname = "Full Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+	     			 visibility = false
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			email
+			(
+    			type = email
+				displayname = "Email Address"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			phone_number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			department
+			(
+    			type = text
+				displayname = "Department"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			current_semester
+			(
+    			type = text
+				displayname = "Current Semester"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			student_status
+			(
+				type = picklist
+				displayname = "Student Status"
+				values = {"Active","Inactive","Graduated"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			academic_year
+			(
+    			type = text
+				displayname = "Academic Year"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	reports
+	{
+		list feedback_response_Report
+		{
+			displayName = "All Responses"
+			show all rows from feedback_response    
+			(
+				response_id as "Response Id"
+				student as "Student"
+				course as "Course"
+				submission_date as "Submission Date"
+				content_quality_rating as "Content Quality Rating"
+				delivery_rating as "Delivery Rating"
+				clarity_rating as "Clarity Rating"
+				engagement_rating as "Engagement Rating"
+				overall_satisfaction as "Overall Satisfaction"
+				suggestions as "Suggestions"
+				is_anonymous as "Is Anonymous"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (overall_satisfaction == "Dissatisfied")
+				fields = [overall_satisfaction]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (overall_satisfaction == "Neutral")
+				fields = [overall_satisfaction]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+				"New Formatting3"
+				{
+				condition = (overall_satisfaction == "Satisfied")
+				fields = [overall_satisfaction]
+				format = "color:#ffffff;background-color:#e84c3d;"
+				}
+				"New Formatting4"
+				{
+				condition = (overall_satisfaction == "Very Satisfied")
+				fields = [overall_satisfaction]
+				format = "color:#ffffff;background-color:#3598db;"
+				}
+			)
+		}
+		kanban feedback_response_by_overall_satisfaction
+		{
+			displayName = "Responses Board"
+			show all rows from feedback_response    
+			(
+				response_id as "Response Id"
+				student as "Student"
+				course as "Course"
+				submission_date as "Submission Date"
+				content_quality_rating as "Content Quality Rating"
+				delivery_rating as "Delivery Rating"
+				clarity_rating as "Clarity Rating"
+				engagement_rating as "Engagement Rating"
+				overall_satisfaction as "Overall Satisfaction"
+				suggestions as "Suggestions"
+				is_anonymous as "Is Anonymous"
+			)
+			options
+			(
+	 			display field = overall_satisfaction
+	 		)
+		}
+		list semester_summary_Report
+		{
+			displayName = "All Semester Summaries"
+			show all rows from semester_summary    
+			(
+				summary_id as "Summary Id"
+				course as "Course"
+				semester as "Semester"
+				academic_year as "Academic Year"
+				total_responses as "Total Responses"
+				average_content_rating as "Average Content Rating"
+				average_delivery_rating as "Average Delivery Rating"
+				average_clarity_rating as "Average Clarity Rating"
+				average_engagement_rating as "Average Engagement Rating"
+				trend_status as "Trend Status"
+				last_updated as "Last Updated"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (trend_status == "Improving")
+				fields = [trend_status]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (trend_status == "Stable")
+				fields = [trend_status]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+			)
+		}
+		kanban semester_summary_by_trend_status
+		{
+			displayName = "Trend Statuses"
+			show all rows from semester_summary    
+			(
+				summary_id as "Summary Id"
+				course as "Course"
+				semester as "Semester"
+				academic_year as "Academic Year"
+				total_responses as "Total Responses"
+				average_content_rating as "Average Content Rating"
+				average_delivery_rating as "Average Delivery Rating"
+				average_clarity_rating as "Average Clarity Rating"
+				average_engagement_rating as "Average Engagement Rating"
+				trend_status as "Trend Status"
+				last_updated as "Last Updated"
+			)
+			options
+			(
+	 			display field = trend_status
+	 		)
+		}
+		list student_Report
+		{
+			displayName = "All Students"
+			show all rows from student    
+			(
+				student_id as "Student Id"
+				full_name  as "Full Name"
+				email as "Email Address"
+				phone_number as "Phone Number"
+				department as "Department"
+				current_semester as "Current Semester"
+				student_status as "Student Status"
+				academic_year as "Academic Year"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (student_status == "Active")
+				fields = [student_status]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (student_status == "Graduated")
+				fields = [student_status]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+				"New Formatting3"
+				{
+				condition = (student_status == "Inactive")
+				fields = [student_status]
+				format = "color:#ffffff;background-color:#e84c3d;"
+				}
+			)
+		}
+		kanban student_by_student_status
+		{
+			displayName = "Student Statuses"
+			show all rows from student    
+			(
+				student_id as "Student Id"
+				full_name  as "Full Name"
+				email as "Email Address"
+				phone_number as "Phone Number"
+				department as "Department"
+				current_semester as "Current Semester"
+				student_status as "Student Status"
+				academic_year as "Academic Year"
+			)
+			options
+			(
+	 			display field = student_status
+	 		)
+		}
+		list course_Report
+		{
+			displayName = "All Courses"
+			show all rows from course    
+			(
+				course_code as "Course Code"
+				course_name as "Course Name"
+				instructor_name  as "Instructor Name"
+				department as "Department"
+				semester as "Semester"
+				academic_year as "Academic Year"
+				credits as "Credits"
+				course_type as "Course Type"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (course_type == "Elective")
+				fields = [course_type]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (course_type == "Lab")
+				fields = [course_type]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+			)
+		}
+		kanban course_by_course_type
+		{
+			displayName = "Course Types"
+			show all rows from course    
+			(
+				course_code as "Course Code"
+				course_name as "Course Name"
+				instructor_name  as "Instructor Name"
+				department as "Department"
+				semester as "Semester"
+				academic_year as "Academic Year"
+				credits as "Credits"
+				course_type as "Course Type"
+			)
+			options
+			(
+	 			display field = course_type
+	 		)
+		}
+		list ratings_by_course_type
+		{
+			displayName = "Ratings by Course Type"
+			show all rows from feedback_response    
+			(
+				content_quality_rating as "Content Quality Rating"
+				(
+					display = total,average,min,max	
+				)
+				delivery_rating as "Delivery Rating"
+				(
+					display = total,average,min,max	
+				)
+				clarity_rating as "Clarity Rating"
+				(
+					display = total,average,min,max	
+				)
+				engagement_rating as "Engagement Rating"
+				(
+					display = total,average,min,max	
+				)
+				overall_satisfaction as "Overall Satisfaction"
+				course as "Course"
+				(
+					delimiter = comma
+				)
+				student as "Student"
+				(
+					delimiter = comma
+				)
+				is_anonymous as "Is Anonymous"
+				(
+						displaytrue = "Yes"
+						displayfalse = "No"
+				)
+				submission_date as "Submission Date"
+				(
+					displayformat = fulldate
+				)
+				response_id as "Response Id"
+				suggestions as "Suggestions"
+			)
+			filters
+			(
+				overall_satisfaction
+				is_anonymous
+			)
+			sort by
+			(
+				submission_date descending
+			)
+		}
+		list ratings_by_course_type_pivot
+		{
+			displayName = "Ratings by Course Type - Pivot Chart"
+			show all rows from feedback_response    
+			(
+				content_quality_rating as "Content Quality Rating"
+				(
+					display = average	
+				)
+				delivery_rating as "Delivery Rating"
+				(
+					display = average	
+				)
+				clarity_rating as "Clarity Rating"
+				(
+					display = average	
+				)
+				engagement_rating as "Engagement Rating"
+				(
+					display = average	
+				)
+				course as "Course"
+				(
+					delimiter = comma
+				)
+				response_id as "Response Id"
+				submission_date as "Submission Date"
+				student as "Student"
+			)
+			sort by
+			(
+				submission_date descending
+			)
+		}
+	}
+	pages
+	{
+		page DashBoard
+		{
+			displayname = "Dashboard"
+			Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"displayType\":\"plain\",\"design\":\"fluid\",\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\"}}'\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='28%'\n   \t>\n\t<panel elementName='Panel 1'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = 'theme'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'business-percentage-39'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'thisapp.semester_summary.total_responses.sum'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Total Total Responses'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 2'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = 'theme'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'business-percentage-39'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'thisapp.semester_summary.average_content_rating.avg'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Average Average Content Ratings'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='24%'\n   \t>\n\t<panel elementName='Panel 3'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = 'theme'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'shopping-delivery-time'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'thisapp.semester_summary.average_delivery_rating.avg'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Average Average Delivery Ratings'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='23%'\n   \t>\n\t<panel elementName='Panel 4'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = 'theme'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'business-percentage-39'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'thisapp.semester_summary.average_clarity_rating.avg'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Average Average Clarity Ratings'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='40%'\n   \t>\n\t<chart \n\telementName='Chart 1'\n\n\t\n\ttitle = 'Trend Status by Total Responses'\n\t\n\ttype = 'Stacked Column'\n\txtitle = 'Trend Status'\n\tytitle = 'Total Responses'\n\tbgColor = '#FFFFFF'\n\ttheme = 'theme'\n\tlegendPos = 'center.top'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'semester_summary'\n\txfield = 'trend_status'\n\tyfields = 'sum:total_responses'\n\tgroupBy = 'academic_year'\n\t\tDelugeCriteria = 'trend_status is not null &amp;&amp; trend_status != &quot;&quot;'\n/>\n\n</column><column\n   \t\t width='35%'\n   \t>\n\t<panel elementName='Grouped_Panel 1'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tcolor = '#000000'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Trend Status'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '17px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n    borderColor = '#444444'\n    borderWidth = '0px'\n\t\twidth = '50%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n    \tcornerRadius = '2px'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'health-apple'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'trend_status == &quot;Stable&quot;'\n\t  value = 'thisapp.semester_summary.trend_status.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Stable'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '17px'\n\tpaddingLeft = '0px'\n\tpaddingRight = '17px'\n\tpaddingBottom = '17px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '50%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'envir-home'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'trend_status == &quot;Improving&quot;'\n\t  value = 'thisapp.semester_summary.trend_status.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Improving'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '17px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n    borderColor = '#444444'\n    borderWidth = '0px'\n\t\twidth = '50%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n    \tcornerRadius = '2px'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'media-1-tripod'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'trend_status == &quot;Deteriorating&quot;'\n\t  value = 'thisapp.semester_summary.trend_status.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Deteriorating'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '17px'\n\tpaddingLeft = '0px'\n\tpaddingRight = '17px'\n\tpaddingBottom = '17px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '50%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n\t\tvAlign = 'middle'\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '7px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '50px'\n\theight = '50px'\n\ttype = 'icon'\n\tvalue = 'travel-world'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmargin = '0px'\n\tcolor = 'theme'\n\tsize = '20px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.semester_summary.trend_status.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '3px'\n\tcolor = '#44404C'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Total'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel_Button 1'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#2D2D2D'\n\tsize = '16px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\n\n\n\n\n\n\t  value = 'Quick Links'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '0px'\n\tpaddingLeft = '10px'\n\tpaddingRight = '10px'\n\tpaddingBottom = '10px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '5px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n\t\thAlign = 'left'\n>\n\t<text \n    action = 'OpenForm'\n\t\tcomponentLinkName = 'feedback_response'\n\t\ttarget = 'new-window'\n\n\tmarginLeft = '12px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'Add New Feedback Response'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\tpadding = '8px'\n\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '5px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n\t\thAlign = 'left'\n>\n\t<text \n    action = 'OpenForm'\n\t\tcomponentLinkName = 'semester_summary'\n\t\ttarget = 'new-window'\n\n\tmarginLeft = '12px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'Add New Semester Summary'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\tpadding = '8px'\n\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '5px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n\t\thAlign = 'left'\n>\n\t<text \n    action = 'OpenForm'\n\t\tcomponentLinkName = 'student'\n\t\ttarget = 'new-window'\n\n\tmarginLeft = '12px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'Add New Student'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\tpadding = '8px'\n\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '5px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = 'theme'\n\tbgColor = '#F1F2F4'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '16px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n\t\thAlign = 'left'\n>\n\t<text \n    action = 'OpenForm'\n\t\tcomponentLinkName = 'course'\n\t\ttarget = 'new-window'\n\n\tmarginLeft = '12px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tpadding = '0px'\n\tcolor = 'theme'\n\tsize = '15px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n        bgColorType = 'noFill'\n\tcornerRadius = '2px'\n\n\n\n\n\n    borderColor = '#5051F9'\n    borderWidth = '0px'\n\n\t  value = 'Add New Course'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<chart \n\telementName='Chart 2'\n\n\t\n\ttitle = 'Trend Status by Total Responses'\n\t\n\ttype = 'Bar'\n\txtitle = 'Trend Status'\n\tytitle = 'Total Responses'\n\tbgColor = '#FFFFFF'\n\ttheme = 'theme'\n\tlegendPos = 'none'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'semester_summary'\n\txfield = 'trend_status'\n\tyfields = 'sum:total_responses'\n\tgroupBy = 'summary_id'\n\t\tDelugeCriteria = 'trend_status is not null &amp;&amp; trend_status != &quot;&quot;'\n/>\n\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<report \n\telementName='Report'\n\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'feedback_response_Report'\n\t\n\t\tiszreport = 'false'\n\theightType = 'auto'\n\theightValue = '700'\n/>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+	}
+
+
+		 functions
+		 {
+			 Deluge
+			 {
+				 float Calculate_Average_Feedback_Rating(course courseRecord)
+                 {
+                 	// Fetch all feedback records for the given course
+                 	feedbackRecords = feedback_response[course == courseRecord.ID];
+                 	// Initialize sum variables
+                 	contentSum = 0.0;
+                 	deliverySum = 0.0;
+                 	claritySum = 0.0;
+                 	engagementSum = 0.0;
+                 	count = 0;
+                 	// Iterate through records to calculate sums
+                 	for each  record in feedbackRecords
+                 	{
+                 		if(!record.content_quality_rating.isNull())
+                 		{
+                 			contentSum = contentSum + record.content_quality_rating;
+                 		}
+                 		if(!record.delivery_rating.isNull())
+                 		{
+                 			deliverySum = deliverySum + record.delivery_rating;
+                 		}
+                 		if(!record.clarity_rating.isNull())
+                 		{
+                 			claritySum = claritySum + record.clarity_rating;
+                 		}
+                 		if(!record.engagement_rating.isNull())
+                 		{
+                 			engagementSum = engagementSum + record.engagement_rating;
+                 		}
+                 		count = count + 1;
+                 	}
+                 	// Calculate average if records exist
+                 	if(count > 0)
+                 	{
+                 		totalSum = contentSum + deliverySum + claritySum + engagementSum;
+                 		totalRatings = count * 4;
+                 		averageRating = totalSum / totalRatings;
+                 	}
+                 	else
+                 	{
+                 		averageRating = 0.0;
+                 	}
+                 	return averageRating;
+                 }
+				 map Generate_Course_Feedback_Summary(course courseRecord)
+                 {
+                 	// Initialize result map
+                 	result = Map();
+                 	// Fetch all feedback responses for the given course
+                 	feedbackList = feedback_response[course == courseRecord.ID];
+                 	// Get count of feedback responses
+                 	feedbackCount = feedbackList.count();
+                 	// Initialize sum variables for each rating field
+                 	sumContent = 0;
+                 	sumDelivery = 0;
+                 	sumClarity = 0;
+                 	sumEngagement = 0;
+                 	// Iterate through each feedback record to calculate sums
+                 	if(feedbackCount > 0)
+                 	{
+                 		for each  feedback in feedbackList
+                 		{
+                 			// Get rating values, default to 0 if null
+                 			contentRating = ifNull(feedback.content_quality_rating,0);
+                 			deliveryRating = ifNull(feedback.delivery_rating,0);
+                 			clarityRating = ifNull(feedback.clarity_rating,0);
+                 			engagementRating = ifNull(feedback.engagement_rating,0);
+                 			// Accumulate sums
+                 			sumContent = sumContent + contentRating;
+                 			sumDelivery = sumDelivery + deliveryRating;
+                 			sumClarity = sumClarity + clarityRating;
+                 			sumEngagement = sumEngagement + engagementRating;
+                 		}
+                 		// Calculate total sum of all ratings
+                 		totalSum = sumContent + sumDelivery + sumClarity + sumEngagement;
+                 		// Calculate overall average (total sum divided by 4 rating fields * number of responses)
+                 		totalRatingsCount = feedbackCount * 4;
+                 		overallAverage = totalSum / totalRatingsCount;
+                 	}
+                 	else
+                 	{
+                 		overallAverage = 0;
+                 	}
+                 	// Populate result map
+                 	result.put("feedback_count",feedbackCount);
+                 	result.put("overall_average_rating",overallAverage);
+                 	// Return the summary map
+                 	return result;
+                 }
+				 int Get_Course_Feedback_Count(course courseRecord)
+                 {
+                 	// Fetch all feedback responses for the given course record
+                 	feedbackRecords = feedback_response[course == courseRecord.ID];
+                 	// Get the count of matching records
+                 	count = feedbackRecords.count();
+                 	// Return the count
+                 	return count;
+                 }
+			 }
+		 }
+
+
+		workflow
+		{
+		form
+		{
+			auto_fill_student_email as "Auto-fill Student Email"
+			{
+				type =  form
+				form = student
+
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											input.email = zoho.loginuserid;
+										disable email;
+						)
+					}
+				}
+
+			}
+			validate_feedback_ratings as "Validate Feedback Ratings"
+			{
+				type =  form
+				form = feedback_response
+
+				record event = on add or edit
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.engagement_rating != null && input.engagement_rating < 1 || input.engagement_rating > 5)
+										{
+											alert "Engagement rating must be between 1 and 5";
+											cancel submit;
+										}
+										if(input.clarity_rating != null && input.clarity_rating < 1 || input.clarity_rating > 5)
+										{
+											alert "Clarity rating must be between 1 and 5";
+											cancel submit;
+										}
+										if(input.delivery_rating != null && input.delivery_rating < 1 || input.delivery_rating > 5)
+										{
+											alert "Delivery rating must be between 1 and 5";
+											cancel submit;
+										}
+										if(input.content_quality_rating != null && input.content_quality_rating < 1 || input.content_quality_rating > 5)
+										{
+											alert "Content quality rating must be between 1 and 5";
+											cancel submit;
+										}
+						)
+					}
+				}
+
+			}
+			feedback_submission_confirmation as "Feedback Submission Confirmation"
+			{
+				type =  form
+				form = feedback_response
+
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											// Fetch student records based on the selected students in the feedback response
+										studentList = student[ID in input.student.ID.getall()];
+										// Prepare email subject and message
+										emailSubject = "Feedback Submission Confirmation";
+										emailMessage = "<p>Dear Student,</p><p>Your feedback for the course has been successfully submitted.</p><p>Thank you for your valuable input.</p><p>Best Regards,<br/>Course Evaluation Team</p>";
+										// Send email to each student
+										for each  studentRec in studentList
+										{
+											if(studentRec.email != null)
+											{
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :studentRec.email
+													subject :emailSubject
+													message :emailMessage
+												]
+											}
+										}
+						)
+					}
+				}
+
+			}
+			academic_staff_notification as "Academic Staff Notification"
+			{
+				type =  form
+				form = feedback_response
+
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											// Fetch the student record using the multi-select lookup ID
+										studentID = input.student.ID;
+										studentRecord = student[ID == studentID];
+										// Fetch the course record using the multi-select lookup ID
+										courseID = input.course.ID;
+										courseRecord = course[ID == courseID];
+										// Check if instructor email exists
+										if(courseRecord.instructor_email != null)
+										{
+											if(input.is_anonymous == false)
+											{
+												// Send email with student details
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :courseRecord.instructor_email
+													subject :"Student Feedback for " + courseRecord.course_name
+													message :"<p>Dear " + courseRecord.instructor_name.first_name + ",</p>" + "<p>You have received feedback from a student.</p>" + "<p><strong>Student Name:</strong> " + studentRecord.full_name.first_name + " " + studentRecord.full_name.last_name + "</p>" + "<p><strong>Course:</strong> " + courseRecord.course_name + "</p>" + "<p><strong>Content Quality Rating:</strong> " + input.content_quality_rating + "</p>" + "<p><strong>Delivery Rating:</strong> " + input.delivery_rating + "</p>" + "<p><strong>Clarity Rating:</strong> " + input.clarity_rating + "</p>" + "<p><strong>Engagement Rating:</strong> " + input.engagement_rating + "</p>" + "<p><strong>Overall Satisfaction:</strong> " + input.overall_satisfaction + "</p>" + "<p><strong>Suggestions:</strong> " + input.suggestions + "</p>"
+												]
+											}
+											else
+											{
+												// Send email without student details (anonymous feedback)
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :courseRecord.instructor_email
+													subject :"Anonymous Student Feedback for " + courseRecord.course_name
+													message :"<p>Dear " + courseRecord.instructor_name.first_name + ",</p>" + "<p>You have received anonymous feedback from a student.</p>" + "<p><strong>Course:</strong> " + courseRecord.course_name + "</p>" + "<p><strong>Content Quality Rating:</strong> " + input.content_quality_rating + "</p>" + "<p><strong>Delivery Rating:</strong> " + input.delivery_rating + "</p>" + "<p><strong>Clarity Rating:</strong> " + input.clarity_rating + "</p>" + "<p><strong>Engagement Rating:</strong> " + input.engagement_rating + "</p>" + "<p><strong>Overall Satisfaction:</strong> " + input.overall_satisfaction + "</p>" + "<p><strong>Suggestions:</strong> " + input.suggestions + "</p>"
+												]
+											}
+										}
+										else
+										{
+											// Log if instructor email is missing
+											info "Instructor email not found for course: " + courseRecord.course_name;
+										}
+						)
+					}
+				}
+
+			}
+		}
+
+		schedule
+		{
+			monthly_semester_summary as "Monthly Semester Summary Report"
+			{
+				type =  schedule
+				start = "2026-11-01 09:00:00"
+				frequency = monthly
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						// Fetch all semester summary records
+										semesterSummaries = semester_summary[ID != 0];
+										// Check if there are any summaries to process
+										if(semesterSummaries.count() > 0)
+										{
+											// Build the report content
+											reportContent = "<h2>Monthly Semester Summary Report</h2>";
+											reportContent = reportContent.concat("<p>Generated on: ").concat(zoho.currentdate.toText("MMM dd, yyyy"));
+											reportContent = reportContent.concat("</p><table border='1' cellpadding='5' cellspacing='0'>");
+											reportContent = reportContent.concat("<tr><th>Semester</th><th>Academic Year</th><th>Total Responses</th><th>Avg Engagement</th><th>Avg Clarity</th><th>Avg Delivery</th><th>Avg Content</th><th>Trend</th></tr>");
+											// Iterate through each semester summary
+											for each  summary in semesterSummaries
+											{
+												// Get semester and academic year
+												semesterName = summary.semester;
+												academicYear = summary.academic_year;
+												// Get ratings (handle null values)
+												avgEngagement = summary.average_engagement_rating;
+												avgClarity = summary.average_clarity_rating;
+												avgDelivery = summary.average_delivery_rating;
+												avgContent = summary.average_content_rating;
+												// Format ratings for display
+												if(avgEngagement.isNull())
+												{
+													engagementDisplay = "N/A";
+												}
+												else
+												{
+													engagementDisplay = avgEngagement.toString();
+												}
+												if(avgClarity.isNull())
+												{
+													clarityDisplay = "N/A";
+												}
+												else
+												{
+													clarityDisplay = avgClarity.toString();
+												}
+												if(avgDelivery.isNull())
+												{
+													deliveryDisplay = "N/A";
+												}
+												else
+												{
+													deliveryDisplay = avgDelivery.toString();
+												}
+												if(avgContent.isNull())
+												{
+													contentDisplay = "N/A";
+												}
+												else
+												{
+													contentDisplay = avgContent.toString();
+												}
+												// Get trend status
+												trendStatus = summary.trend_status;
+												if(trendStatus.isNull())
+												{
+													trendDisplay = "N/A";
+												}
+												else
+												{
+													trendDisplay = trendStatus;
+												}
+												// Get total responses
+												totalResponses = summary.total_responses;
+												if(totalResponses.isNull())
+												{
+													responsesDisplay = "0";
+												}
+												else
+												{
+													responsesDisplay = totalResponses.toString();
+												}
+												// Add row to table
+												reportContent = reportContent.concat("<tr>");
+												reportContent = reportContent.concat("<td>").concat(semesterName).concat("</td>");
+												reportContent = reportContent.concat("<td>").concat(academicYear).concat("</td>");
+												reportContent = reportContent.concat("<td>").concat(responsesDisplay).concat("</td>");
+												reportContent = reportContent.concat("<td>").concat(engagementDisplay).concat("</td>");
+												reportContent = reportContent.concat("<td>").concat(clarityDisplay).concat("</td>");
+												reportContent = reportContent.concat("<td>").concat(deliveryDisplay).concat("</td>");
+												reportContent = reportContent.concat("<td>").concat(contentDisplay).concat("</td>");
+												reportContent = reportContent.concat("<td>").concat(trendDisplay).concat("</td>");
+												reportContent = reportContent.concat("</tr>");
+											}
+											reportContent = reportContent.concat("</table>");
+											// Send email to admin
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :zoho.adminuserid
+												subject :"Monthly Semester Summary Report - " + zoho.currentdate.toText("MMMM yyyy")
+												message :reportContent
+												content type :HTML
+											]
+										}
+					)
+					}
+				}
+			}
+		}
+
+
+		blueprint
+		{
+    			semester_performance_review as "Semester Performance Review"
+    			{
+        			type = Blueprint
+        			form = semester_summary
+        			start
+        			{
+            			start stage = "Summary Created"
+        			}
+        			stages
+        			{
+           			"Summary Created"
+           			{
+           			}
+           			"Data Validation"
+           			{
+           			}
+           			"Trend Analysis"
+           			{
+           			}
+           			"Data Correction"
+           			{
+           			}
+           			"Performance Review"
+           			{
+           			}
+           			"Manual Review"
+           			{
+           			}
+           			"Summary Finalized"
+           			{
+           			}
+           			"Archive"
+           			{
+           			}
+        			}
+        			transitions
+        			{
+    				approve_analysis as "Approve Analysis"
+    				{
+         				type = normal
+         				from stage = "Manual Review"
+         				to stage = "Performance Review"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				archive_record as "Archive Record"
+    				{
+         				type = normal
+         				from stage = "Summary Finalized"
+         				to stage = "Archive"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				complete_analysis as "Complete Analysis"
+    				{
+         				type = normal
+         				from stage = "Trend Analysis"
+         				to stage = "Performance Review"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				escalate_review as "Escalate for Manual Review"
+    				{
+         				type = normal
+         				from stage = "Trend Analysis"
+         				to stage = "Manual Review"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				finalize_summary as "Finalize Summary"
+    				{
+         				type = normal
+         				from stage = "Performance Review"
+         				to stage = "Summary Finalized"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				flag_correction as "Flag for Correction"
+    				{
+         				type = normal
+         				from stage = "Data Validation"
+         				to stage = "Data Correction"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				re_analyze as "Re-analyze Data"
+    				{
+         				type = normal
+         				from stage = "Performance Review"
+         				to stage = "Trend Analysis"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				request_revision as "Request Data Revision"
+    				{
+         				type = normal
+         				from stage = "Manual Review"
+         				to stage = "Data Correction"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				resubmit_data as "Resubmit Corrected Data"
+    				{
+         				type = normal
+         				from stage = "Data Correction"
+         				to stage = "Data Validation"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				start_analysis as "Proceed to Analysis"
+    				{
+         				type = normal
+         				from stage = "Data Validation"
+         				to stage = "Trend Analysis"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				validate_data as "Validate Input Data"
+    				{
+         				type = normal
+         				from stage = "Summary Created"
+         				to stage = "Data Validation"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+        			}
+    			}
+    			course_feedback_collection as "Course Feedback Collection"
+    			{
+        			type = Blueprint
+        			form = feedback_response
+        			start
+        			{
+            			start stage = "Feedback Received"
+        			}
+        			stages
+        			{
+           			"Feedback Received"
+           			{
+           			}
+           			"Feedback Under Review"
+           			{
+           			}
+           			"Feedback Archived"
+           			{
+           			}
+           			"Feedback Approved"
+           			{
+           			}
+           			"Feedback Rejected"
+           			{
+           			}
+           			"Feedback Pending Clarification"
+           			{
+           			}
+           			"Feedback Analyzed"
+           			{
+           			}
+           			"Feedback Actioned"
+           			{
+           			}
+        			}
+        			transitions
+        			{
+    				approve_feedback as "Approve Feedback"
+    				{
+         				type = normal
+         				from stage = "Feedback Under Review"
+         				to stage = "Feedback Approved"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				archive_analysis as "Archive Analysis Results"
+    				{
+         				type = normal
+         				from stage = "Feedback Analyzed"
+         				to stage = "Feedback Archived"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				archive_approved as "Archive Approved Feedback"
+    				{
+         				type = normal
+         				from stage = "Feedback Approved"
+         				to stage = "Feedback Archived"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				archive_feedback as "Archive Feedback"
+    				{
+         				type = normal
+         				from stage = "Feedback Received"
+         				to stage = "Feedback Archived"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				archive_rejected as "Archive Rejected Feedback"
+    				{
+         				type = normal
+         				from stage = "Feedback Rejected"
+         				to stage = "Feedback Archived"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				finalize_archive as "Finalize and Archive"
+    				{
+         				type = normal
+         				from stage = "Feedback Actioned"
+         				to stage = "Feedback Archived"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				generate_improvement_plan as "Generate Improvement Plan"
+    				{
+         				type = normal
+         				from stage = "Feedback Analyzed"
+         				to stage = "Feedback Actioned"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				receive_clarification as "Receive Clarification"
+    				{
+         				type = normal
+         				from stage = "Feedback Pending Clarification"
+         				to stage = "Feedback Under Review"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reject_feedback as "Reject Feedback"
+    				{
+         				type = normal
+         				from stage = "Feedback Under Review"
+         				to stage = "Feedback Rejected"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reject_incomplete as "Reject Due to Incomplete Data"
+    				{
+         				type = normal
+         				from stage = "Feedback Pending Clarification"
+         				to stage = "Feedback Rejected"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				request_clarification as "Request Clarification"
+    				{
+         				type = normal
+         				from stage = "Feedback Under Review"
+         				to stage = "Feedback Pending Clarification"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				start_analysis as "Start Analysis"
+    				{
+         				type = normal
+         				from stage = "Feedback Approved"
+         				to stage = "Feedback Analyzed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				submit_for_review as "Submit for Review"
+    				{
+         				type = normal
+         				from stage = "Feedback Received"
+         				to stage = "Feedback Under Review"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+        			}
+    			}
+		}
+
+
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Academic Staff"
+			{
+				name = "Academic Staff"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:false, PIIAccess:false, ePHIAccess:false}
+				description = "Academic staff can view all feedback, analyze reports, and manage courses\n"
+				ModulePermissions
+				{
+					semester_summary
+					{
+						enabled= Create,Viewall,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							semester_summary_Report={"View"}
+						}
+					}
+					course
+					{
+						enabled= Create,Viewall,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							course_Report={"View"}
+						}
+					}
+					student
+					{
+						enabled= Create,Viewall,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							student_Report={"View"}
+						}
+					}
+					feedback_response
+					{
+						enabled= Create,Viewall,Export,Tab,read_comm,write_comm 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							feedback_response_Report={"View"}
+							feedback_response_by_overall_satisfaction={"View"}
+							ratings_by_course_type={"View"}
+						}
+					}
+					DashBoard
+					{
+						enabled = tab
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Developer"
+			{
+				name = "Developer"
+				type = Developer
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Developer Profile\n"
+			}
+			"Student"
+			{
+				name = "Student"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:false, PIIAccess:false, ePHIAccess:false}
+				description = "Students can submit feedback and view their own submissions\n"
+				ModulePermissions
+				{
+					course
+					{
+						enabled= Create,Viewall,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							course_Report={"View"}
+						}
+					}
+					feedback_response
+					{
+						enabled= Create,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							feedback_response_Report={"View"}
+						}
+					}
+					DashBoard
+					{
+						enabled = tab
+					}
+				}
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		icon
+		{
+			text = "STU"
+			background color = "theme"
+			foreground color = "#ffffff"
+		}
+	}
+
+	web
+	{
+		forms
+		{
+			form course
+			{
+				label placement = left
+			}
+			form feedback_response
+			{
+				label placement = left
+			}
+			form semester_summary
+			{
+				label placement = left
+			}
+			form student
+			{
+				label placement = left
+			}
+		}
+		reports
+		{
+			report feedback_response_Report
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								response_id as "Response Id"
+								student as "Student"
+								course as "Course"
+								submission_date as "Submission Date"
+								content_quality_rating as "Content Quality Rating"
+								delivery_rating as "Delivery Rating"
+								clarity_rating as "Clarity Rating"
+								engagement_rating as "Engagement Rating"
+								overall_satisfaction as "Overall Satisfaction"
+								suggestions as "Suggestions"
+								is_anonymous as "Is Anonymous"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+								Add 
+								Import 
+								Export 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+		     				title = "Overview"
+							fields
+							(
+								response_id as "Response Id"
+								student as "Student"
+								course as "Course"
+								submission_date as "Submission Date"
+								content_quality_rating as "Content Quality Rating"
+								delivery_rating as "Delivery Rating"
+								clarity_rating as "Clarity Rating"
+								engagement_rating as "Engagement Rating"
+								overall_satisfaction as "Overall Satisfaction"
+								suggestions as "Suggestions"
+								is_anonymous as "Is Anonymous"
+							)
+						)
+						datablock2
+						(
+		     				title = "Student"
+		     				related field = student
+							fields
+							(
+								student_id as "Student Id"
+								full_name as "Full Name"
+								email as "Email Address"
+								phone_number as "Phone Number"
+								department as "Department"
+								current_semester as "Current Semester"
+								student_status as "Student Status"
+								academic_year as "Academic Year"
+							)
+						)
+						datablock3
+						(
+		     				title = "Course"
+		     				related field = course
+							fields
+							(
+								course_code as "Course Code"
+								course_name as "Course Name"
+								instructor_name as "Instructor Name"
+								department as "Department"
+								semester as "Semester"
+								academic_year as "Academic Year"
+								credits as "Credits"
+								course_type as "Course Type"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+							)
+						)
+				)
+			}
+			report feedback_response_by_overall_satisfaction
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								response_id as "Response Id"
+								student as "Student"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+								Add 
+								Import 
+								Export 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								response_id as "Response Id"
+								student as "Student"
+								course as "Course"
+								submission_date as "Submission Date"
+								content_quality_rating as "Content Quality Rating"
+								delivery_rating as "Delivery Rating"
+								clarity_rating as "Clarity Rating"
+								engagement_rating as "Engagement Rating"
+								overall_satisfaction as "Overall Satisfaction"
+								suggestions as "Suggestions"
+								is_anonymous as "Is Anonymous"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+							)
+						)
+				)
+			}
+			report semester_summary_Report
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								summary_id as "Summary Id"
+								course as "Course"
+								semester as "Semester"
+								academic_year as "Academic Year"
+								total_responses as "Total Responses"
+								average_content_rating as "Average Content Rating"
+								average_delivery_rating as "Average Delivery Rating"
+								average_clarity_rating as "Average Clarity Rating"
+								average_engagement_rating as "Average Engagement Rating"
+								trend_status as "Trend Status"
+								last_updated as "Last Updated"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+								Add 
+								Import 
+								Export 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+		     				title = "Overview"
+							fields
+							(
+								summary_id as "Summary Id"
+								course as "Course"
+								semester as "Semester"
+								academic_year as "Academic Year"
+								total_responses as "Total Responses"
+								average_content_rating as "Average Content Rating"
+								average_delivery_rating as "Average Delivery Rating"
+								average_clarity_rating as "Average Clarity Rating"
+								average_engagement_rating as "Average Engagement Rating"
+								trend_status as "Trend Status"
+								last_updated as "Last Updated"
+							)
+						)
+						datablock2
+						(
+		     				title = "Course"
+		     				related field = course
+							fields
+							(
+								course_code as "Course Code"
+								course_name as "Course Name"
+								instructor_name as "Instructor Name"
+								department as "Department"
+								semester as "Semester"
+								academic_year as "Academic Year"
+								credits as "Credits"
+								course_type as "Course Type"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+							)
+						)
+				)
+			}
+			report semester_summary_by_trend_status
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								summary_id as "Summary Id"
+								semester as "Semester"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+								Add 
+								Import 
+								Export 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								summary_id as "Summary Id"
+								course as "Course"
+								semester as "Semester"
+								academic_year as "Academic Year"
+								total_responses as "Total Responses"
+								average_content_rating as "Average Content Rating"
+								average_delivery_rating as "Average Delivery Rating"
+								average_clarity_rating as "Average Clarity Rating"
+								average_engagement_rating as "Average Engagement Rating"
+								trend_status as "Trend Status"
+								last_updated as "Last Updated"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+							)
+						)
+				)
+			}
+			report student_Report
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								student_id as "Student Id"
+								full_name as "Full Name"
+								email as "Email Address"
+								phone_number as "Phone Number"
+								department as "Department"
+								current_semester as "Current Semester"
+								student_status as "Student Status"
+								academic_year as "Academic Year"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+								Add 
+								Import 
+								Export 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+		     				title = "Overview"
+							fields
+							(
+								student_id as "Student Id"
+								full_name as "Full Name"
+								email as "Email Address"
+								phone_number as "Phone Number"
+								department as "Department"
+								current_semester as "Current Semester"
+								student_status as "Student Status"
+								academic_year as "Academic Year"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+							)
+						)
+				)
+			}
+			report student_by_student_status
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								full_name as "Full Name"
+								student_id as "Student Id"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+								Add 
+								Import 
+								Export 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								student_id as "Student Id"
+								full_name as "Full Name"
+								email as "Email Address"
+								phone_number as "Phone Number"
+								department as "Department"
+								current_semester as "Current Semester"
+								student_status as "Student Status"
+								academic_year as "Academic Year"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+							)
+						)
+				)
+			}
+			report course_Report
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								course_code as "Course Code"
+								course_name as "Course Name"
+								instructor_name as "Instructor Name"
+								department as "Department"
+								semester as "Semester"
+								academic_year as "Academic Year"
+								credits as "Credits"
+								course_type as "Course Type"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+								Add 
+								Import 
+								Export 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+		     				title = "Overview"
+							fields
+							(
+								course_code as "Course Code"
+								course_name as "Course Name"
+								instructor_name as "Instructor Name"
+								department as "Department"
+								semester as "Semester"
+								academic_year as "Academic Year"
+								credits as "Credits"
+								course_type as "Course Type"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+							)
+						)
+				)
+			}
+			report course_by_course_type
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								instructor_name as "Instructor Name"
+								course_code as "Course Code"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+								Add 
+								Import 
+								Export 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								course_code as "Course Code"
+								course_name as "Course Name"
+								instructor_name as "Instructor Name"
+								department as "Department"
+								semester as "Semester"
+								academic_year as "Academic Year"
+								credits as "Credits"
+								course_type as "Course Type"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+								Print 
+							)
+						)
+				)
+			}
+			report ratings_by_course_type
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								response_id as "Response Id"
+								student as "Student"
+								course as "Course"
+								content_quality_rating as "Content Quality Rating"
+								delivery_rating as "Delivery Rating"
+								clarity_rating as "Clarity Rating"
+								engagement_rating as "Engagement Rating"
+								overall_satisfaction as "Overall Satisfaction"
+								is_anonymous as "Is Anonymous"
+								submission_date as "Submission Date"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						feedback_details
+						(
+		     				title = "Feedback Details"
+							fields
+							(
+								response_id as "Response Id"
+								student as "Student"
+								course as "Course"
+								content_quality_rating as "Content Quality Rating"
+								delivery_rating as "Delivery Rating"
+								clarity_rating as "Clarity Rating"
+								engagement_rating as "Engagement Rating"
+								overall_satisfaction as "Overall Satisfaction"
+								is_anonymous as "Is Anonymous"
+								submission_date as "Submission Date"
+								suggestions as "Suggestions"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+			report ratings_by_course_type_pivot
+			{
+				quickview
+				(
+					layout
+					(
+						datablock1
+						(
+							fields
+							(
+								response_id as "Response Id"
+								student as "Student"
+								course as "Course"
+								content_quality_rating as "Content Quality Rating"
+								delivery_rating as "Delivery Rating"
+								clarity_rating as "Clarity Rating"
+								engagement_rating as "Engagement Rating"
+								submission_date as "Submission Date"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+							)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+						)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+						pivot_data
+						(
+		     				title = "Pivot Data"
+							fields
+							(
+								response_id as "Response Id"
+								course as "Course"
+								content_quality_rating as "Content Quality Rating"
+								delivery_rating as "Delivery Rating"
+								clarity_rating as "Clarity Rating"
+								engagement_rating as "Engagement Rating"
+							)
+						)
+					)
+						menu
+						(
+							header
+							(
+								Edit 
+								Duplicate 
+								Delete 
+							)
+						)
+				)
+			}
+		}
+		menu
+		{
+			space Space
+			{
+				displayname = "Space"
+				icon = "objects-spaceship"
+
+				section Section_1
+				{
+					displayname = "Dashboard"
+					icon = "ui-1-dashboard-half"
+					page DashBoard
+					{
+						icon = "ui-1-dashboard-half"
+					}
+				}
+				section Section_2
+				{
+					displayname = "Responses"
+					icon = "design-2-selection"
+					form  feedback_response
+					{
+						icon = "ui-1-bold-add"
+					}
+					report feedback_response_Report
+					{
+						icon = "travel-world"
+					}
+					report feedback_response_by_overall_satisfaction
+					{
+						icon = "education-board-51"
+					}
+					report ratings_by_course_type
+					{
+						icon = "shopping-tag-sale"
+					}
+					report ratings_by_course_type_pivot
+					{
+						icon = "media-1-button-next"
+					}
+				}
+				section Section_3
+				{
+					displayname = "Semester Summaries"
+					icon = "tech-desktop"
+					form  semester_summary
+					{
+						icon = "ui-1-bold-add"
+					}
+					report semester_summary_Report
+					{
+						icon = "travel-world"
+					}
+					report semester_summary_by_trend_status
+					{
+						icon = "business-chart-bar-33"
+					}
+				}
+				section Section_4
+				{
+					displayname = "Students"
+					icon = "education-pencil-47"
+					form  student
+					{
+						icon = "ui-1-bold-add"
+					}
+					report student_Report
+					{
+						icon = "travel-world"
+					}
+					report student_by_student_status
+					{
+						icon = "education-pencil-47"
+					}
+				}
+				section Section_5
+				{
+					displayname = "Courses"
+					icon = "education-hat"
+					form  course
+					{
+						icon = "ui-1-bold-add"
+					}
+					report course_Report
+					{
+						icon = "travel-world"
+					}
+					report course_by_course_type
+					{
+						icon = "tech-2-keyboard-wireless"
+					}
+				}
+				section ZC_App_Preferences
+				{
+					displayname = "App Preferences"
+					icon = "design-app"
+					systemcomponent
+					{
+						type = localization
+						displayname = "Language Selection"
+						icon = "education-language"
+					}
+					systemcomponent
+					{
+						type = connection
+						displayname = "Integrations"
+						icon = "tech-2-connection"
+					}
+				}
+				section ZC_Approvals
+				{
+					displayname = "Approvals"
+					icon = "ui-2-hourglass"
+					systemcomponent
+					{
+						type = approval
+						approval status = pending
+						displayname = "Pending Tasks"
+						icon = "ui-2-hourglass"
+					}
+					systemcomponent
+					{
+						type = approval
+						approval status = completed
+						displayname = "Completed Tasks"
+						icon = "design-todo"
+					}
+				}
+				section SharedAnalytics_Section
+				{
+					type = shared_user_report_section
+					displayname = "Reports"
+					icon = "business-chart-bar-33"
+				}
+			}
+			preference
+			{
+				icon
+				{
+					style = solid
+					show = {space,section,component}
+				}
+			}
+		}
+		customize
+		{
+			font = "lato"
+			color options
+			{
+				name = "custom_color"
+				brand color = "#2563eb"
+				navigation background color = "#1e3a8a"
+				type = "custom"
+			}
+			logo
+			{
+				preference = "none"
+				placement = "left"
+			}
+		}
+	}
+	phone
+	{
+		forms
+		{
+			form course
+			{
+				label placement = auto
+			}
+			form feedback_response
+			{
+				label placement = auto
+			}
+			form semester_summary
+			{
+				label placement = auto
+			}
+			form student
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = twocolumn
+			font = "default"
+			style = "3"
+			color options
+			{
+				type = "custom"
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	tablet
+	{
+		forms
+		{
+			form course
+			{
+				label placement = auto
+			}
+			form feedback_response
+			{
+				label placement = auto
+			}
+			form semester_summary
+			{
+				label placement = auto
+			}
+			form student
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "3"
+			color options
+			{
+				type = "custom"
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	translation
+{
+{"Language_Settings":{"LANGAGUE_WITH_LOGIN":"browser"}}
+}
+}
